@@ -13,13 +13,22 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint(
+        url: "/swagger/v1/swagger.json",
+        name: "Taarafo.Core v1");
+    });
+
+
 }
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseRouting();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
